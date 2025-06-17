@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Item({ item }) {
   return (
@@ -7,7 +8,9 @@ export default function Item({ item }) {
       <div className="card-body">
         <h5 className="card-title">{item.title}</h5>
         <p className="card-text">${item.price}</p>
-        <button className="btn btn-primary">Ver detalle</button>
+        <Link to={`/item/${item.id}`} className="btn btn-primary">
+          Ver detalle
+        </Link>
       </div>
     </div>
   );
