@@ -1,22 +1,39 @@
+// src/components/ItemDetailContainer.jsx
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getProductById } from '../data/products';
 import ItemDetail from './ItemDetail';
+import { fetchProductById } from '../firebase/firebaseHelpers';
 
 export default function ItemDetailContainer() {
   const { itemId } = useParams();
   const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getProductById(itemId).then((res) => setProduct(res));
+    setLoading(true);
+    const fetchData = async () => {
+      try {
+        const data = await fetchProductById(itemId);
+        setProduct(data);
+      } catch (error) {
+        console.error('Error al obtener el producto:', error);
+        setProduct(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, [itemId]);
 
   return (
     <div className="container mt-4">
-      {product ? (
+      {loading ? (
+        <p>Cargando producto...</p>
+      ) : product ? (
         <ItemDetail item={product} />
       ) : (
-        <p>Cargando detalle del producto...</p>
+        <p>Producto no encontrado.</p>
       )}
     </div>
   );

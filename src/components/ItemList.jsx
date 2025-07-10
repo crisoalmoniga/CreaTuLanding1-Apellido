@@ -1,12 +1,15 @@
+// src/components/ItemList.jsx
 import React from 'react';
 import Item from './Item';
 
-export default function ItemList({ products }) {
+export default function ItemList({ items }) {
   return (
-    <div className="d-flex flex-wrap justify-content-center">
-      {products.map((prod) => (
-        <Item key={prod.id} item={prod} />
+    <ul className="row list-unstyled">
+      {items.map((item) => (
+        <li key={item.id} className="col-md-3 mb-3">
+          <Item item={item} />
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }

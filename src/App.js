@@ -4,6 +4,8 @@ import NavBar from './components/NavBar';
 import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import Cart from './components/Cart';
+import CheckoutForm from './components/CheckoutForm';
+
 
 function App() {
   return (
@@ -29,6 +31,9 @@ function App() {
           path="*"
           element={<h2 style={{ padding: '2rem' }}>404 - Página no encontrada</h2>}
         />
+
+        <Route path="/checkout" element={<CheckoutForm />} />
+
       </Routes>
     </BrowserRouter>
   );

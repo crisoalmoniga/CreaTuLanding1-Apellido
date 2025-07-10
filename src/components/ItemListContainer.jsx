@@ -1,7 +1,8 @@
+// src/components/ItemListContainer.jsx
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getProducts } from '../data/products';
 import ItemList from './ItemList';
+import { fetchProducts, fetchProductsByCategory } from '../firebase/firebaseHelpers';
 
 export default function ItemListContainer({ greeting }) {
   const { categoryId } = useParams();
@@ -10,11 +11,22 @@ export default function ItemListContainer({ greeting }) {
 
   useEffect(() => {
     setLoading(true);
-    getProducts(categoryId)
-      .then((res) => {
-        setProducts(res);
-      })
-      .finally(() => setLoading(false));
+    const fetchData = async () => {
+      try {
+        const data = categoryId
+          ? await fetchProductsByCategory(categoryId)
+          : await fetchProducts();
+        console.log("📦 Productos recibidos:", data); // 👈 Agregado para verificar datos
+        setProducts(data);
+      } catch (error) {
+        console.error("❌ Error cargando productos:", error);
+        setProducts([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, [categoryId]);
 
   return (
@@ -23,7 +35,7 @@ export default function ItemListContainer({ greeting }) {
       {loading ? (
         <p>Cargando productos...</p>
       ) : products.length > 0 ? (
-        <ItemList products={products} />
+        <ItemList items={products} />
       ) : (
         <p>No hay productos en esta categoría.</p>
       )}
