@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 export default function Item({ item }) {
   return (
     <div className="card m-2" style={{ width: '18rem' }}>
-      {item.pictureUrl && (
+      {item.pictureURL && (
         <img
-          src={item.pictureUrl}
+          src={item.pictureURL}
           className="card-img-top"
           alt={item.title}
         />

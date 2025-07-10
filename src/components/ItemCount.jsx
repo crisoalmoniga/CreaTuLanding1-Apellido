@@ -1,30 +1,42 @@
-import React, { useState } from 'react';
+// src/components/ItemDetail.jsx
+import React from 'react';
+import ItemCount from './ItemCount';
+import { useCart } from '../context/CartContext';
 
-export default function ItemCount({ initial = 1, stock = 10, onAdd }) {
-  const [count, setCount] = useState(initial);
+export default function ItemDetail({ item }) {
+  const { addToCart } = useCart();
 
-  const increment = () => {
-    if (count < stock) setCount(count + 1);
-  };
+  const handleAddToCart = (quantity) => {
+    const itemToAdd = {
+      id: item.id,
+      title: item.title,
+      price: item.price,
+      pictureURL: item.pictureURL,
+      quantity,
+    };
 
-  const decrement = () => {
-    if (count > 1) setCount(count - 1);
-  };
-
-  const handleAdd = () => {
-    onAdd(count);
+    addToCart(itemToAdd);
+    console.log('Producto agregado:', itemToAdd);
   };
 
   return (
-    <div className="d-flex flex-column align-items-start gap-2 mt-3">
-      <div className="d-flex align-items-center gap-2">
-        <button className="btn btn-outline-secondary" onClick={decrement}>-</button>
-        <span>{count}</span>
-        <button className="btn btn-outline-secondary" onClick={increment}>+</button>
+    <div className="card mb-4 mx-auto" style={{ maxWidth: '600px' }}>
+      <img
+        src={item.pictureURL}
+        className="card-img-top"
+        alt={item.title}
+        style={{ objectFit: 'cover', height: '400px' }}
+      />
+      <div className="card-body">
+        <h3 className="card-title">{item.title}</h3>
+        <p className="card-text">{item.description}</p>
+        <p className="card-text fw-bold">${item.price}</p>
+        <p className="card-text">
+          Stock disponible: <strong>{item.stock}</strong>
+        </p>
+
+        <ItemCount stock={item.stock} initial={1} onAdd={handleAddToCart} />
       </div>
-      <button className="btn btn-success" onClick={handleAdd}>
-        Agregar al carrito
-      </button>
     </div>
   );
 }

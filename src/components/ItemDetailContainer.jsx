@@ -10,6 +10,8 @@ export default function ItemDetailContainer() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!itemId) return;
+
     setLoading(true);
     const fetchData = async () => {
       try {
@@ -26,14 +28,16 @@ export default function ItemDetailContainer() {
     fetchData();
   }, [itemId]);
 
+  console.log("Detalle recibido:", product);
+
   return (
     <div className="container mt-4">
       {loading ? (
         <p>Cargando producto...</p>
-      ) : product ? (
+      ) : product && product.pictureUrl ? (
         <ItemDetail item={product} />
       ) : (
-        <p>Producto no encontrado.</p>
+        <p>Producto no encontrado o incompleto.</p>
       )}
     </div>
   );
