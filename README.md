@@ -1,70 +1,103 @@
-# Getting Started with Create React App
+# 🛒 React E-commerce | Proyecto Final Coderhouse
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto es una aplicación web de e-commerce desarrollada como **proyecto final del curso de React JS** en Coderhouse. Permite navegar un catálogo de productos, ver detalles, agregar al carrito y finalizar la compra generando una orden en Firebase.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Tecnologías utilizadas
 
-### `npm start`
+- **React JS**
+- **React Router DOM**
+- **Context API**
+- **Firebase (Firestore)**
+- **Bootstrap 5**
+- **JavaScript (ES6+)**
+- **HTML & CSS**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📁 Estructura del proyecto
 
-### `npm test`
+```
+src/
+├── components/
+│   ├── Cart.jsx
+│   ├── CartWidget.jsx
+│   ├── CheckoutForm.jsx
+│   ├── Item.jsx
+│   ├── ItemCount.jsx
+│   ├── ItemDetail.jsx
+│   ├── ItemDetailContainer.jsx
+│   ├── ItemList.jsx
+│   ├── ItemListContainer.jsx
+│   └── NavBar.jsx
+├── context/
+│   └── CartContext.jsx
+├── firebase/
+│   ├── firebaseConfig.js
+│   └── firebaseHelpers.js
+├── App.js
+└── index.js
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🔄 Funcionalidades principales
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- 🛍️ Vista de listado de productos
+- 📂 Filtrado por categorías
+- 🔎 Detalle de producto
+- ➕ Agregar productos al carrito con control de stock
+- 🧺 Visualización y gestión del carrito
+- 📤 Formulario de checkout con validaciones
+- 📦 Generación de orden de compra en Firestore
+- ☁️ Conexión con base de datos Firebase
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🔧 Cómo ejecutar este proyecto
 
-### `npm run eject`
+1. Cloná el repositorio:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+git clone https://github.com/crisoalmoniga/CreaTuLanding1-Apellido.git
+cd CreaTuLanding1-Apellido
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. Instalá las dependencias:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+npm install
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+3. Agregá tus credenciales de Firebase en el archivo:
 
-## Learn More
+```
+src/firebase/firebaseConfig.js
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. Iniciá el proyecto:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+npm start
+```
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 📝 Notas del autor
 
-### Analyzing the Bundle Size
+Este proyecto fue realizado como ejercicio final integrador del curso de React de Coderhouse. Se aplicaron conceptos como:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Separación de componentes contenedores y de presentación
+- Manejo de rutas con React Router
+- Uso de hooks personalizados y `useEffect`
+- Renderizado condicional y control de estados
+- Context API para manejo del carrito
+- Conexión y persistencia de datos en Firestore
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 👨‍💻 Autor
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Cristian Almóniga**  
+LinkedIn -> https://www.linkedin.com/in/cristianalmoniga/
