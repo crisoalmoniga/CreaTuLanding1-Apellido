@@ -1,4 +1,3 @@
-// src/components/ItemCount.jsx
 import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
 
@@ -6,30 +5,32 @@ export default function ItemCount({ stock, initial = 1, item }) {
   const [quantity, setQuantity] = useState(initial);
   const { addItem } = useCart();
 
-  const handleIncrement = () => quantity < stock && setQuantity(quantity + 1);
-  const handleDecrement = () => quantity > 1 && setQuantity(quantity - 1);
+  const increment = () => {
+    if (quantity < stock) {
+      setQuantity(prev => prev + 1);
+    }
+  };
 
-  const handleAddToCart = () => {
-    const itemToAdd = {
-      id: item.id,
-      title: item.title,
-      price: item.price,
-      pictureURL: item.pictureURL,
-      quantity,
-    };
+  const decrement = () => {
+    if (quantity > 1) {
+      setQuantity(prev => prev - 1);
+    }
+  };
 
-    addItem(itemToAdd);
-    console.log('Producto agregado:', itemToAdd);
+  const handleAdd = () => {
+    addItem(item, quantity);
+    console.log('🛒 Producto agregado:', item.title, 'Cantidad:', quantity);
   };
 
   return (
-    <div className="d-flex flex-column align-items-start gap-2 mt-3">
-      <div className="d-flex align-items-center gap-2">
-        <button className="btn btn-outline-secondary" onClick={handleDecrement}>-</button>
-        <span>{quantity}</span>
-        <button className="btn btn-outline-secondary" onClick={handleIncrement}>+</button>
+    <div className="mt-3">
+      <div className="btn-group mb-2" role="group">
+        <button onClick={decrement} className="btn btn-outline-secondary">-</button>
+        <span className="btn btn-light">{quantity}</span>
+        <button onClick={increment} className="btn btn-outline-secondary">+</button>
       </div>
-      <button className="btn btn-success" onClick={handleAddToCart}>
+      <br />
+      <button onClick={handleAdd} className="btn btn-success">
         Agregar al carrito
       </button>
     </div>

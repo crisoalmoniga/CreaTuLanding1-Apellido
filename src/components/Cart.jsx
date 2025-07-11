@@ -1,9 +1,10 @@
+// src/components/Cart.jsx
 import React from 'react';
 import { useCart } from '../context/CartContext';
 
 export default function Cart() {
   const { cart, removeFromCart, clearCart } = useCart();
-
+  
   const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   if (cart.length === 0) {

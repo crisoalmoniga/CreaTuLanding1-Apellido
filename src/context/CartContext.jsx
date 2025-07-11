@@ -1,18 +1,15 @@
+// src/context/CartContext.jsx
 import React, { createContext, useContext, useState } from 'react';
 
-// 1. Create the context
 const CartContext = createContext();
 
-// 2. Make a provider component
 export function CartProvider({ children }) {
-  const [items, setItems] = useState([]); // { id, title, price, quantity }
+  const [cart, setCart] = useState([]);
 
-  // Add or update an item
   const addItem = (product, quantity) => {
-    setItems(curr => {
+    setCart(curr => {
       const idx = curr.findIndex(i => i.id === product.id);
       if (idx > -1) {
-        // update existing
         const copy = [...curr];
         copy[idx].quantity += quantity;
         return copy;
@@ -21,27 +18,17 @@ export function CartProvider({ children }) {
     });
   };
 
-  const removeItem = id => {
-    setItems(curr => curr.filter(i => i.id !== id));
+  const removeFromCart = (id) => {
+    setCart(curr => curr.filter(item => item.id !== id));
   };
 
-  const clearCart = () => setItems([]);
+  const clearCart = () => setCart([]);
 
-  const totalItems = items.reduce((sum, i) => sum + i.quantity, 0);
-
-  // 3. Expose everything via context
   return (
-    <CartContext.Provider value={{
-      items,
-      addItem,
-      removeItem,
-      clearCart,
-      totalItems
-    }}>
+    <CartContext.Provider value={{ cart, addItem, removeFromCart, clearCart }}>
       {children}
     </CartContext.Provider>
   );
 }
 
-// 4. Custom hook for convenience
 export const useCart = () => useContext(CartContext);

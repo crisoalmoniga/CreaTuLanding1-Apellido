@@ -26,7 +26,7 @@ export default function ItemDetail({ item }) {
         <p className="card-text">
           Stock disponible: <strong>{item.stock}</strong>
         </p>
-        <ItemCount item={item} />
+        <ItemCount item={item} stock={item.stock} />
       </div>
     </div>
   );
