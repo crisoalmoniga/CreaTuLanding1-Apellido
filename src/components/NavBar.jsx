@@ -23,7 +23,7 @@ export default function NavBar() {
         </li>
       </ul>
 
-      {/* Envolver el ícono del carrito con Link */}
+      {/* Envolver el iicono del carrito con Link */}
       <Link to="/cart">
         <CartWidget />
       </Link>

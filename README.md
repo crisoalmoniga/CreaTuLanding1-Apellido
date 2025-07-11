@@ -20,6 +20,8 @@ Este proyecto es una aplicación web de e-commerce desarrollada como **proyecto 
 
 ```
 src/
+├── assets/
+│   └── logo.webp
 ├── components/
 │   ├── Cart.jsx
 │   ├── CartWidget.jsx
@@ -33,7 +35,14 @@ src/
 │   └── NavBar.jsx
 ├── context/
 │   └── CartContext.jsx
+├── data/
+│   ├── context/
+│   │   └── CartContext.js
+│   └── firebaseProducts.js
+│   
 ├── firebase/
+│   ├── config.js
+│   ├── db.js
 │   ├── firebaseConfig.js
 │   └── firebaseHelpers.js
 ├── App.js

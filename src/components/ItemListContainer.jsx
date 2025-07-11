@@ -1,4 +1,3 @@
-// src/components/ItemListContainer.jsx
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ItemList from './ItemList';
@@ -16,7 +15,7 @@ export default function ItemListContainer({ greeting }) {
         const data = categoryId
           ? await fetchProductsByCategory(categoryId)
           : await fetchProducts();
-        console.log("📦 Productos recibidos:", data); // 👈 Agregado para verificar datos
+        console.log("📦 Productos recibidos:", data);
         setProducts(data);
       } catch (error) {
         console.error("❌ Error cargando productos:", error);

@@ -1,4 +1,3 @@
-// src/components/CheckoutForm.jsx
 import React, { useState } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../firebase/firebaseConfig';
@@ -10,7 +9,7 @@ export default function CheckoutForm() {
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [confirmEmail, setConfirmEmail] = useState('');
-  const { cart, clearCart } = useCart(); // ✅ corrección: usamos 'cart'
+  const { cart, clearCart } = useCart();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -37,7 +36,7 @@ export default function CheckoutForm() {
         phone,
         email
       },
-      items: cart, // ✅ usamos 'cart' como lista de ítems
+      items: cart,
       total: cart.reduce((acc, item) => acc + item.price * item.quantity, 0),
       date: new Date()
     };

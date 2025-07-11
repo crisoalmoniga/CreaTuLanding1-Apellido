@@ -9,7 +9,7 @@ export function CartProvider({ children }) {
     setItems(curr => {
       const idx = curr.findIndex(i => i.id === product.id);
       if (idx > -1) {
-        // merge in existing
+        
         const updated = [...curr];
         updated[idx].quantity += quantity;
         return updated;

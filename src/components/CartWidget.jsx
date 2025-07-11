@@ -1,9 +1,9 @@
 import React from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
-import { useCart } from '../context/CartContext'; // ✅ Usamos el contexto
+import { useCart } from '../context/CartContext';
 
 export default function CartWidget() {
-  const { totalItems } = useCart(); // ✅ Obtenemos la cantidad desde el contexto
+  const { totalItems } = useCart();
 
   return (
     <div style={{ position: 'relative' }}>
