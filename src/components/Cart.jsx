@@ -1,10 +1,11 @@
 // src/components/Cart.jsx
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 
 export default function Cart() {
   const { cart, removeFromCart, clearCart } = useCart();
-  
+
   const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   if (cart.length === 0) {
@@ -21,7 +22,9 @@ export default function Cart() {
               <h5 className="mb-1">{item.title}</h5>
               <p className="mb-1">Cantidad: {item.quantity}</p>
               <p className="mb-1">Precio unitario: ${item.price}</p>
-              <p className="mb-1"><strong>Subtotal: ${item.price * item.quantity}</strong></p>
+              <p className="mb-1">
+                <strong>Subtotal: ${item.price * item.quantity}</strong>
+              </p>
             </div>
             <button className="btn btn-danger" onClick={() => removeFromCart(item.id)}>
               Eliminar
@@ -35,6 +38,12 @@ export default function Cart() {
         <button className="btn btn-outline-danger" onClick={clearCart}>
           Vaciar carrito
         </button>
+      </div>
+
+      <div className="mt-3">
+        <Link to="/checkout" className="btn btn-primary">
+          Finalizar compra
+        </Link>
       </div>
     </div>
   );
