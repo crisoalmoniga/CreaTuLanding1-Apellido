@@ -15,8 +15,9 @@ export default function ItemDetailContainer() {
     setLoading(true);
     const fetchData = async () => {
       try {
-        const data = await fetchProductById(itemId);
+        const data = await fetchProductById(itemId.trim());
         setProduct(data);
+        console.log("Producto cargado correctamente:", data);
       } catch (error) {
         console.error('Error al obtener el producto:', error);
         setProduct(null);
@@ -28,16 +29,14 @@ export default function ItemDetailContainer() {
     fetchData();
   }, [itemId]);
 
-  console.log("Detalle recibido:", product);
-
   return (
     <div className="container mt-4">
       {loading ? (
         <p>Cargando producto...</p>
-      ) : product && product.pictureUrl ? (
+      ) : product ? (
         <ItemDetail item={product} />
       ) : (
-        <p>Producto no encontrado o incompleto.</p>
+        <p>Producto no encontrado.</p>
       )}
     </div>
   );

@@ -3,16 +3,18 @@ import React from 'react';
 import ItemCount from './ItemCount';
 
 export default function ItemDetail({ item }) {
-  if (!item) return <p className="text-center mt-4">❌ Error: Producto no disponible.</p>;
+  if (!item || typeof item !== 'object') {
+    return <p>Producto no válido.</p>;
+  }
 
-  const imageUrl = item.pictureURL?.trim()
+  const imageURL = item.pictureURL && typeof item.pictureURL === 'string' && item.pictureURL.trim()
     ? item.pictureURL
-    : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4jXtK6Z2tLyqgyKkSWPRseJ0-eu_sf4Zyzg&s';
+    : 'https://via.placeholder.com/600x400?text=Sin+imagen';
 
   return (
     <div className="card mb-4 mx-auto" style={{ maxWidth: '600px' }}>
       <img
-        src={imageUrl}
+        src={imageURL}
         className="card-img-top"
         alt={item.title || 'Producto'}
         style={{ objectFit: 'cover', height: '400px' }}

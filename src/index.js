@@ -1,14 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { CartProvider } from './context/CartContext'; // ✅ Importación correcta
+ import React from 'react';
+ import ReactDOM from 'react-dom/client';
+ import 'bootstrap/dist/css/bootstrap.min.css';
+ import App from './App';
+ import { CartProvider } from './context/CartContext';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <CartProvider>     {/* ✅ Envolvé la App con el provider */}
-      <App />
-    </CartProvider>
-  </React.StrictMode>
-);
+ const root = ReactDOM.createRoot(document.getElementById('root'));
+ root.render(
+   <CartProvider>
+     <App />
+   </CartProvider>
+ );

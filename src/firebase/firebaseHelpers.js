@@ -16,10 +16,16 @@ export const fetchProductsByCategory = async (categoryId) => {
 
 // 🆕 Agregá esta función:
 export const fetchProductById = async (id) => {
-  const ref = doc(db, 'products', id);
+  if (!id || typeof id !== 'string') {
+    throw new Error('ID inválido');
+  }
+
+  const ref = doc(db, 'products', id.trim());
   const snapshot = await getDoc(ref);
+
   if (!snapshot.exists()) {
     throw new Error('Producto no encontrado');
   }
+
   return { id: snapshot.id, ...snapshot.data() };
 };
